@@ -6,118 +6,118 @@ import FractionSum from "../Components/FractionSum";
 function Frame3({ num1, denom1, num2, denom2, lcm, setFrameNo }) {
   const [step, setStep] = useState(0);
   useEffect(() => {
-    //Implementing the setInterval method
-    const interval = setInterval(() => {
-      setStep(step + 1);
-      if (step >= 20) {
-        clearInterval(interval);
-      }
-    }, 1000);
-
-    //Clearing the interval
-    return () => clearInterval(interval);
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
   }, [step]);
+  // useEffect(() => {
+  //   //Implementing the setInterval method
+  //   const interval = setInterval(() => {
+  //     setStep(step + 1);
+  //     if (step >= 20) {
+  //       clearInterval(interval);
+  //     }
+  //   }, 1000);
+
+  //   //Clearing the interval
+  //   return () => clearInterval(interval);
+  // }, [step]);
+  const increaseStep = () => {
+    setStep(step + 1);
+  };
   const renderButtons = () => {
     return (
       <div className="d-flex w-100 justify-content-evenly appear">
-        <Button
-          variant="primary"
-          onClick={denom1 == denom2 ? () => setFrameNo(1) : () => setFrameNo(2)}
-        >
-          <h2>Back</h2>
-        </Button>
         <Button variant="primary" onClick={() => setFrameNo(0)}>
-          <h2>Start Over</h2>
+          <h2>Back</h2>
         </Button>
       </div>
     );
   };
+  const renderList = [
+    //// step0
+    <>
+      <div className="outer-grid appear mb-3">
+        <div>
+          <h1>
+            {(num1 * lcm) / denom1}/{lcm}
+          </h1>
+        </div>
+        <Fraction
+          className="appear"
+          num={num1}
+          denom={denom1}
+          split={lcm == denom1 ? null : lcm / denom1}
+          color={"blue"}
+        />
+      </div>
+      <h1 className="text-center">+</h1>
+      <div className="outer-grid appear mb-3">
+        <div>
+          <h1>
+            {(num2 * lcm) / denom2}/{lcm}
+          </h1>
+        </div>
+        <Fraction
+          className="appear"
+          num={num2}
+          denom={denom2}
+          split={lcm == denom2 ? null : lcm / denom2}
+          color={"yellow"}
+        />
+      </div>
+    </>,
+    //// step1
+    <>
+      <h1 className="text-center">=</h1>
+
+      <div className="outer-grid appear mb-3">
+        <div>
+          <h1>
+          {(num1 * lcm) / denom1 + (num2 * lcm) / denom2}/{lcm}
+          </h1>
+        </div>
+
+        <FractionSum
+          className="appear"
+          num1={(num1 * lcm) / denom1}
+          num2={(num2 * lcm) / denom2}
+          denom={lcm}
+          color1={"blue"}
+          color2={"yellow"}
+        />
+      </div>
+    </>,
+    //// step2
+
+    <p className="appear fs-2 text-center">
+      Answer:
+      {num1}/{denom1}+{num2}/{denom2}
+      {denom1 != denom2 &&
+        `=${(num1 * lcm) / denom1}/${lcm}+${(num2 * lcm) / denom2}/${lcm}`}
+      =
+      <span className="fw-bold fs-1">
+        {(num1 * lcm) / denom1 + (num2 * lcm) / denom2}/{lcm}
+      </span>
+    </p>,
+  ];
+
   return (
     <div className="frame3">
-      {step >= 0 && (
-        <>
-          <div className="outer-grid appear mb-3">
-            <div>
-              <h1>
-                {(num1 * lcm) / denom1}/{lcm}
-              </h1>
-            </div>
-            <Fraction
-              className="appear"
-              num={num1}
-              denom={denom1}
-              split={lcm==denom1?null:lcm/denom1}
-              color={"blue"}
-            />
-          </div>
-          <h1 className="text-center">+</h1>
-          <div className="outer-grid appear mb-3">
-            <div>
-              <h1>
-                {(num2 * lcm) / denom2}/{lcm}
-              </h1>
-            </div>
-            <Fraction
-              className="appear"
-              num={num2}
-              denom={denom2}
-              split={lcm==denom2?null:lcm/denom2}
-              color={"yellow"}
-            />
-          </div>
-        </>
-      )}
-
-      {step >= 1 && (
-        <>
-          <h1 className="text-center">=</h1>
-
-          <div className="outer-grid appear mb-3">
-            <div>
-              <h1>
-                
-              </h1>
-            </div>
-
-            <FractionSum
-              className="appear"
-              num1={(num1 * lcm) / denom1}
-              num2={(num2 * lcm) / denom2}
-              denom={lcm}
-              color1={"blue"}
-              color2={"yellow"}
-            />
-          </div>
-        </>
-      )}
-            {step >= 2 && (
-        <>
-          <h1 className="text-center">=</h1>
-
-          <div className="outer-grid appear mb-3">
-            <div>
+      {renderList.map((i, index) => (
+        step>=index&&<React.Fragment key={index}>{renderList[index]}</React.Fragment>
+      ))}
+      {step < renderList.length && (
+        <div className="text-center">
+          <Button variant="primary" onClick={increaseStep}>
             <h1>
-                {((num1 * lcm) / denom1)+((num2 * lcm) / denom2)}/{lcm}
-              </h1>
-            </div>
-            <Fraction
-              className="appear"
-              num={((num1 * lcm) / denom1)+((num2 * lcm) / denom2)}
-              denom={lcm}
-              color={"green"}
-            />
-          </div>
-        </>
+              <i className="fa-solid fa-angle-down mx-5"></i>
+            </h1>
+          </Button>
+        </div>
       )}
-        {step >= 4 && (
-            <p className="appear  fs-2 text-center">
-                Answer:
-                 {num1}/{denom1}+{num2}/{denom2}
-                 {denom1!=denom2&&`=${(num1 * lcm) / denom1}/${lcm}+${(num2 * lcm) / denom2}/${lcm}`}
-                  =<span className="fw-bold fs-1">{((num1 * lcm) / denom1)+((num2 * lcm) / denom2)}/{lcm}</span>
-                </p>
-          )}
-      {step >= 5 && renderButtons()}
+      {step >= renderList.length && renderButtons()}
     </div>
   );
 }

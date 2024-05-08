@@ -21,6 +21,6 @@
         opacity: 1;
     }
 }
-.frame2,.frame3{
-    min-width: min(45rem , 100%);
+.frame1,.frame2,.frame3{
+    width: min(45rem , 100%);
 }
