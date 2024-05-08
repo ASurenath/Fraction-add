@@ -6,6 +6,7 @@ import Frame1 from "./Frames/Frame1";
 import useTypewriter from "./Hooks/useTypewritter";
 import Frame3 from "./Frames/Frame3";
 import Frame2 from "./Frames/Frame2";
+import { InputNumber } from "primereact/inputnumber";
 
 function App() {
   const [num1, setNum1] = useState(1);
@@ -15,8 +16,8 @@ function App() {
   const [frameNo, setFrameNo] = useState(0);
   const [valueEntered, setValueEntered] = useState(false);
   const handleSetValue = (value, setValue) => {
-    if (value == 0) {
-      setValue(1);
+    if (value <= 0 || value > 99) {
+      // setValue(1);
     } else {
       setValue(Math.floor(value));
     }
@@ -36,7 +37,6 @@ function App() {
     return (a * b) / gcdValue;
   }
 
-
   return (
     <div className="App">
       <h1 className="text-center py-3 ">Addition of fractions</h1>
@@ -45,42 +45,42 @@ function App() {
         {frameNo == 0 && (
           <div className="d-flex justify-content-center align-items-center">
             <div className="d-flex flex-column">
-              <input
-                type="number"
-                className=" form-control small-input text-center fs-1"
+              <InputNumber
+                className="small-input text-center fs-1"
                 min={1}
+                max={99}
                 value={num1}
-                onChange={(e) => handleSetValue(e.target.value, setNum1)}
-                placeholder="0"
+                onValueChange={(e) => handleSetValue(e.target.value, setNum1)}
+                showButtons
               />
               <hr className="border border-3 border-black opacity-100 mx-2" />
-              <input
-                type="number"
-                className=" form-control small-input text-center fs-1"
+              <InputNumber
+                className=" small-input text-center fs-1"
                 min={1}
+                max={99}
                 value={denom1}
-                onChange={(e) => handleSetValue(e.target.value, setDenom1)}
-                placeholder="1"
+                onValueChange={(e) => handleSetValue(e.target.value, setDenom1)}
+                showButtons
               />
             </div>
             <h1>+</h1>
             <div className="d-flex flex-column ">
-              <input
-                type="number"
-                className=" form-control small-input text-center fs-1"
+              <InputNumber
+                className=" small-input text-center fs-1"
                 min={1}
+                max={99}
                 value={num2}
-                onChange={(e) => handleSetValue(e.target.value, setNum2)}
-                placeholder="0"
+                onValueChange={(e) => handleSetValue(e.target.value, setNum2)}
+                showButtons
               />
               <hr className="border border-3 border-black opacity-100 mx-2" />
-              <input
-                type="number"
-                className=" form-control small-input text-center fs-1"
+              <InputNumber
+                className=" small-input text-center fs-1"
                 min={1}
+                max={99}
                 value={denom2}
-                onChange={(e) => handleSetValue(e.target.value, setDenom2)}
-                placeholder="1"
+                onValueChange={(e) => handleSetValue(e.target.value, setDenom2)}
+                showButtons
               />
             </div>
             <Button

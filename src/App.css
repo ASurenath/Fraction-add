@@ -1,6 +1,7 @@
-.small-input {
-  width: 100px !important;
+.small-input input {
+  width: 80px !important;
   height: 60px;
+  text-align: center;
 }
 .main {
   min-height: 50vh;

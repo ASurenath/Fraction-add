@@ -46,7 +46,7 @@ function Frame3({ num1, denom1, num2, denom2, lcm, setFrameNo }) {
               className="appear"
               num={num1}
               denom={denom1}
-              split={lcm / denom1}
+              split={lcm==denom1?null:lcm/denom1}
               color={"blue"}
             />
           </div>
@@ -61,7 +61,7 @@ function Frame3({ num1, denom1, num2, denom2, lcm, setFrameNo }) {
               className="appear"
               num={num2}
               denom={denom2}
-              split={lcm / denom2}
+              split={lcm==denom2?null:lcm/denom2}
               color={"yellow"}
             />
           </div>
