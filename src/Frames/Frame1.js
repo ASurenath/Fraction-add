@@ -19,7 +19,7 @@ function Frame1({ num1, denom1, num2, denom2, lcm, setFrameNo }) {
   // }, [step]);
 
   const textA = [
-    `We can represent fractions as shaded sections, where the whole is dvided into equal parts,`,
+    `We can represent fractions as shaded sections, where the whole is divided into equal parts,`,
     `as many as the denominator. And we shade as many sections as the numerator`,
     `Both ${num1}/${denom1} and ${num2}/${denom2} have different denominators.`,
     ` We need to find the common denominator to add them.`,

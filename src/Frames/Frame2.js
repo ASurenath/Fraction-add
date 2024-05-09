@@ -67,9 +67,9 @@ function Frame2({ num1, denom1, num2, denom2, lcm, setFrameNo }) {
     ////step2
     <>
           <p className="appear  fs-2 text-center">{denom1==lcm?
-          <>{num1}/{denom1} already has the {lcm} as denominator </>
+          <>{num1}/{denom1} already has {lcm} as denominator </>
           :<>
-To convert {num1}/{denom1} to a fraction with {lcm} as denominator, we need to multiply both the numerator and denominator by LCM/denominator that is,{lcm}/{denom1}={lcm/denom1}.
+To convert {num1}/{denom1} to a fraction with {lcm} as denominator, we need to multiply both the numerator and denominator by LCM/denominator, that is,{lcm}/{denom1}={lcm/denom1}.
 If you look at the picture, you can see that we divided each section into {lcm/denom1} parts to make the total number of sections equal to {lcm}.
           </>}
           </p>
@@ -107,9 +107,9 @@ If you look at the picture, you can see that we divided each section into {lcm/d
     ////step3
     <>
     <p className="appear  fs-2 text-center">{denom2==lcm?
-    <>{num2}/{denom2} already has the {lcm} as denominator </>:
+    <>{num2}/{denom2} already has {lcm} as denominator </>:
     <>
-To convert {num2}/{denom2} to a fraction with {lcm} as denominator, we need to multiply both the numerator and denominator by LCM/denominator that is,{lcm}/{denom2}={lcm/denom2}.
+To convert {num2}/{denom2} to a fraction with {lcm} as denominator, we need to multiply both the numerator and denominator by LCM/denominator, that is,{lcm}/{denom2}={lcm/denom2}.
 If you look at the picture, you can see that we divided each section into {lcm/denom2} parts to make the total number of sections equal to {lcm}.
           </>}</p>
 
